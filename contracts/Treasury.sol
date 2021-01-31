@@ -61,7 +61,7 @@ contract Treasury is ContractGuard, Epoch {
     uint256 public minBondPriceOnGAC;
     uint256 public bondPriceOnGACDelta;
 
-    uint256 public fundAllocationRate = 2; // %
+    uint256 public fundAllocationRate = 3; // %
     uint256 public maxInflationRate = 10;
     
     uint256 public debtAddRate = 2;
@@ -82,7 +82,7 @@ contract Treasury is ContractGuard, Epoch {
         address _bondRewardPool,
         address _fund,
         uint256 _startTime
-    ) public Epoch(8 hours, _startTime, 0) {
+    ) public Epoch(6 hours, _startTime, 0) {
         cash = _cash;
         bond = _bond;
         share = _share;
