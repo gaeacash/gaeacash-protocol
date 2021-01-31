@@ -94,10 +94,10 @@ contract Treasury is ContractGuard, Epoch {
 
         fund = _fund;
 
-        cashPriceGaea = 10**18;
-        cashPriceCeiling = uint256(102).mul(cashPriceGaea).div(10**2);
-        cashPriceFloor = uint256(98).mul(cashPriceGaea).div(10**2);
-        cashPriceBondReward = uint256(95).mul(cashPriceGaea).div(10**2);
+        cashPriceOne = 10**18;
+        cashPriceCeiling = uint256(102).mul(cashPriceOne).div(10**2);
+        cashPriceFloor = uint256(98).mul(cashPriceOne).div(10**2);
+        cashPriceBondReward = uint256(95).mul(cashPriceOne).div(10**2);
         
         bondPriceOnGAC = 10**18;
         minBondPriceOnGAC = 5 * 10**17;
@@ -241,7 +241,7 @@ contract Treasury is ContractGuard, Epoch {
     {
         uint256 cashPrice = _getCashPrice(oracle);
         require(
-            cashPrice < cashPriceGaea, // price < $1
+            cashPrice < cashPriceOne, // price < $1
             'Treasury: cashPrice not eligible for bond purchase'
         );
 
@@ -269,7 +269,7 @@ contract Treasury is ContractGuard, Epoch {
     {
         uint256 cashPrice = _getCashPrice(oracle);
         require(
-            cashPrice > cashPriceGaea, // price > $1
+            cashPrice > cashPriceOne, // price > $1
             'Treasury: cashPrice not eligible for bond redeem'
         );
 
@@ -331,7 +331,7 @@ contract Treasury is ContractGuard, Epoch {
             return; // just advance epoch instead revert
         }
         
-        uint256 percentage = cashPrice.sub(cashPriceGaea);
+        uint256 percentage = cashPrice.sub(cashPriceOne);
         uint256 seigniorage = cashSupply.mul(percentage).div(1e18);
         uint256 maxSeigniorage = cashSupply.mul(maxInflationRate).div(100);
         if (seigniorage > maxSeigniorage) {
