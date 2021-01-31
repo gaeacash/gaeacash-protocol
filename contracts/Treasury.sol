@@ -95,8 +95,8 @@ contract Treasury is ContractGuard, Epoch {
         fund = _fund;
 
         cashPriceOne = 10**18;
-        cashPriceCeiling = uint256(102).mul(cashPriceOne).div(10**2);
-        cashPriceFloor = uint256(98).mul(cashPriceOne).div(10**2);
+        cashPriceCeiling = uint256(101).mul(cashPriceOne).div(10**2);
+        cashPriceFloor = uint256(99).mul(cashPriceOne).div(10**2);
         cashPriceBondReward = uint256(95).mul(cashPriceOne).div(10**2);
         
         bondPriceOnGAC = 10**18;
